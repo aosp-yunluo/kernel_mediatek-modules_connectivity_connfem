@@ -23,11 +23,7 @@ ccflags-y += -Werror
 ###############################################################################
 # Compile Options
 ###############################################################################
-ifneq ($(TARGET_BUILD_VARIANT), user)
-    ccflags-y += -D CONNFEM_DBG=1
-else
-    ccflags-y += -D CONNFEM_DBG=0
-endif
+ccflags-y += -D CONNFEM_DBG=0
 
 
 ###############################################################################
@@ -53,12 +49,8 @@ $(MODULE_NAME)-objs += connfem_subsys_bt.o
 $(MODULE_NAME)-objs += connfem_subsys_wifi.o
 
 ifneq ($(wildcard $(TOP)/vendor/mediatek/internal/connfem_enable),)
-    $(info ConnFem: MTK internal load)
     $(MODULE_NAME)-objs += connfem_internal.o
-else
-    $(info ConnFem: Customer load)
 endif
-
 
 ###############################################################################
 # Test
